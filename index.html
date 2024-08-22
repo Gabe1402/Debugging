@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Texto</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');</style>
+    <script src="https://kit.fontawesome.com/d457bfe0e2.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="/ico32.png"></head>
+<body>
+    <h1>Generador de texto</h1>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'generador')">Sesión Informativa</button>
+        <button class="tablinks" onclick="openTab(event, 'reuniones')">Reunión de Avance</button>
+        <button class="tablinks" onclick="openTab(event, 'faltas')">Faltas</button>
+        <button class="tablinks" onclick="openTab(event, 'nuevo_ingreso')">Nuevo Ingreso</button>
+        <button class="tablinks" onclick="openTab(event, 'nuevo_horario')">Nuevo Horario</button>
+        <button class="tablinks" onclick="openTab(event, 'agenda')">Agenda</button>
+
+
+    </div>
+
+                    <!-- SESION INFORMATIVA, EXAMENES Y RESULTADOS -->
+
+    <div id="generador" class="tabcontent"><br>
+        <form id="formularioGenerador">
+            <label><input type="checkbox" id="sesion_informativa" name="sesion_informativa"><span>Sesión informativa</span></label>
+            <label><input type="checkbox" id="examen_diagnostico" name="examen_diagnostico"><span>Examen Diagnóstico</span></label>
+            <label><input type="checkbox" id="entrega_resultados" name="entrega_resultados"><span>Entrega de resultados</span></label><br><br>
+
+
+            <label for="fechaGenerador">Fecha:</label>
+            <input type="date" id="fechaGenerador" name="fechaGenerador" required>
+        
+            <label for="horaGenerador">Hora:</label>
+            <input type="time" id="horaGenerador" name="horaGenerador" required><br><br>
+            
+            <label for="nombreGenerador">Padre/Madre:</label>
+            <input type="text" id="nombreGenerador" name="nombreGenerador" required>
+            
+            <label for="telefonoGenerador">Teléfono:</label>
+            <input type="text" id="telefonoGenerador" name="telefonoGenerador" required><br><br>
+
+            <label for="alumnoGenerador">Alumno:</label>
+            <input type="text" id="alumnoGenerador" name="alumnoGenerador" required>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+
+            <label>Grado Escolar:</label>
+            <input type="number" id="gradoEscolarTexto" name="gradoEscolarTexto">
+            <select id="gradoEscolar" name="gradoEscolar">
+                <option value="Kinder">Kinder</option>
+                <option value="Primaria">Primaria</option>
+                <option value="Secundaria">Secundaria</option>
+                <option value="Preparatoria">Preparatoria</option>
+            </select><br><br>
+
+            <label><input type="checkbox" name="matematicas"> Matemáticas</label><br>
+            <label><input type="checkbox" name="lectura"> Lectura</label><br>
+            <label><input type="checkbox" name="ingles"> Inglés</label><br><br>
+
+
+            <label for="modalidadGenerador">Modalidad:</label>
+            <select id="modalidadGenerador" name="modalidadGenerador">
+                <option value="" disabled selected >Seleccionar</option>
+                <option value="Virtual">Virtual</option>
+                <option value="Presencial">Presencial</option>
+            </select><br><br>
+
+            <button type="submit"><i class="fa-solid fa-message"></i> Generar Texto</button>
+            <button id="btnCopiarGenerador">
+                <i class="fa-solid fa-copy"></i> Copiar
+            </button>
+            <button type="reset" id="btnResetGenerador">
+                <i class="fa-solid fa-delete-left"></i> Limpiar
+            </button><br><br>
+
+        </form>
+
+        <div id="resultadoGenerador"></div>
+
+    </div>
+
+                   <!-- REUNIONES DE AVANCE -->
+
+    <div id="reuniones" class="tabcontent">
+        <form id="formularioReuniones">
+            <label for="fechaReuniones">Fecha:</label>
+            <input type="date" id="fechaReuniones" name="fechaReuniones" required><br><br>
+            
+            <label for="horaReuniones">Hora:</label>
+            <input type="time" id="horaReuniones" name="horaReuniones" required><br><br>
+            
+            <label for="alumno">Alumno:</label>
+            <input type="text" id="alumno" name="alumno" required><br><br>
+            
+            <button type="submit">Generar Texto</button>
+            <button id="btnCopiarReuniones">
+                <i class="fa-solid fa-copy"></i> Copiar
+            </button>
+        </form>
+        <div id="resultadoReuniones"></div>
+
+    </div>
+
+<!-- FALTAS -->
+<div id="faltas" class="tabcontent">
+    <form id="formularioFaltas">
+        <label for="alumnoFaltas">Alumno:</label>
+        <input type="text" id="alumnoFaltas" name="alumnoFaltas" required><br><br>
+        
+        <label for="motivoFaltas">Motivo:</label>
+        <input type="text" id="motivoFaltas" name="motivoFaltas" required><br><br>
+        
+        <label><input type="checkbox" id="solicitaMaterial" name="solicitaMaterial"> Solicita material</label><br><br>
+        
+        <div id="cuandoPasanDiv" style="display: none;">
+            <label for="cuandoPasan">¿Cuándo pasan por el material?:</label>
+            <input type="text" id="cuandoPasan" name="cuandoPasan"><br><br>
+        </div>
+        
+        <button type="submit">Generar Texto</button>
+        <button id="btnCopiarFaltas"><i class="fa-solid fa-copy"></i> Copiar
+        </button>
+    </form>
+    <div id="resultadoFaltas"></div>
+</div> 
+
+<!-- NUEVO INGRESO -->
+<div id="nuevo_ingreso" class="tabcontent">
+    <form id="formularioNuevoIngreso">
+        <label for="alumnoNuevoIngreso">Alumno:</label>
+        <input type="text" id="alumnoNuevoIngreso" name="alumnoNuevoIngreso" required><br><br>
+
+        <label for="fechaNuevoIngreso">Fecha:</label>
+        <input type="date" id="fechaNuevoIngreso" name="fechaNuevoIngreso" required><br><br>
+
+        <label for="modalidadNuevoIngreso">Modalidad:</label>
+        <select id="modalidadNuevoIngreso" name="modalidadNuevoIngreso" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Virtual">Virtual</option>
+            <option value="Híbrida">Híbrida</option>
+        </select><br><br>
+
+        <label for="dia1">Día 1:</label>
+        <select id="dia1" name="dia1" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+        </select>
+        <label for="hora1">Hora 1:</label>
+        <select id="hora1" name="hora1">
+            <option value="11:00">11:00am</option>
+            <option value="11:30">11:30am</option>
+            <option value="12:00">12:00pm</option>
+            <option value="12:30">12:30pm</option>
+            <option value="13:00">1:00pm</option>
+            <option value="13:30">1:30pm</option>
+            <option value="14:00">2:00pm</option>
+            <option value="14:30">2:30pm</option>
+            <option value="15:00">3:00pm</option>
+            <option value="15:30">3:30pm</option>
+            <option value="16:00">4:00pm</option>
+            <option value="16:30">4:30pm</option>
+            <option value="17:00">5:00pm</option>
+            <option value="17:30">5:30pm</option>
+            <option value="18:00">6:00pm</option>
+            <option value="18:30">6:30pm</option>
+        </select><br><br>
+        <label for="dia2">Día 2:</label>
+        <select id="dia2" name="dia2" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+        </select>
+        <label for="hora2">Hora 2:</label>
+        <select id="hora2" name="hora2">
+            <option value="11:00">11:00am</option>
+            <option value="11:30">11:30am</option>
+            <option value="12:00">12:00pm</option>
+            <option value="12:30">12:30pm</option>
+            <option value="13:00">1:00pm</option>
+            <option value="13:30">1:30pm</option>
+            <option value="14:00">2:00pm</option>
+            <option value="14:30">2:30pm</option>
+            <option value="15:00">3:00pm</option>
+            <option value="15:30">3:30pm</option>
+            <option value="16:00">4:00pm</option>
+            <option value="16:30">4:30pm</option>
+            <option value="17:00">5:00pm</option>
+            <option value="17:30">5:30pm</option>
+            <option value="18:00">6:00pm</option>
+            <option value="18:30">6:30pm</option>
+        </select><br><br>
+        
+        <label><input type="checkbox" id="tercerDia" name="tercerDia"> ¿Tercer día?</label><br><br>
+
+        <div id="tercerDiaContenido" style="display:none;">
+            <label for="dia3">Día 3:</label>
+            <select id="dia3" name="dia3">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sábado">Sábado</option>
+            </select>
+            <label for="hora3">Hora 3:</label>
+            <select id="hora3" name="hora3">
+                <option value="11:00">11:00am</option>
+                <option value="11:30">11:30am</option>
+                <option value="12:00">12:00pm</option>
+                <option value="12:30">12:30pm</option>
+                <option value="13:00">1:00pm</option>
+                <option value="13:30">1:30pm</option>
+                <option value="14:00">2:00pm</option>
+                <option value="14:30">2:30pm</option>
+                <option value="15:00">3:00pm</option>
+                <option value="15:30">3:30pm</option>
+                <option value="16:00">4:00pm</option>
+                <option value="16:30">4:30pm</option>
+                <option value="17:00">5:00pm</option>
+                <option value="17:30">5:30pm</option>
+                <option value="18:00">6:00pm</option>
+                <option value="18:30">6:30pm</option>
+            </select><br><br>
+        </div>
+
+        <button type="submit">Generar Texto</button>
+        <button type="button" id="btnCopiarNuevoIngreso">
+            <i class="fa-solid fa-copy"></i> Copiar
+        </button>
+        <button type="reset" id="btnResetNuevoIngreso">
+            <i class="fa-solid fa-delete-left"></i> Limpiar
+        </button><br><br>
+    </form>
+
+    <div id="resultadoNuevoIngreso"></div>
+</div>
+
+<!-- NUEVO HORARIO -->
+<div id="nuevo_horario" class="tabcontent">
+    <form id="formularioHorarios">
+        <label for="alumnoHorarios">Alumno:</label>
+        <input type="text" id="alumnoHorarios" name="alumnoHorarios" required><br><br>
+
+        <label for="fechaHorarios">Fecha:</label>
+        <input type="date" id="fechaHorarios" name="fechaHorarios" required><br><br>
+
+        <label for="modalidadHorarios">Modalidad:</label>
+        <select id="modalidadHorarios" name="modalidadHorarios" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Virtual">Virtual</option>
+            <option value="Híbrida">Híbrida</option>
+        </select><br><br>
+
+        <label for="dia1Horarios">Día 1:</label>
+        <select id="dia1Horarios" name="dia1Horarios" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+        </select>
+        <label for="hora1Horarios">Hora 1:</label>
+        <select id="hora1Horarios" name="hora1Horarios">
+            <option value="11:00">11:00am</option>
+            <option value="11:30">11:30am</option>
+            <option value="12:00">12:00pm</option>
+            <option value="12:30">12:30pm</option>
+            <option value="13:00">1:00pm</option>
+            <option value="13:30">1:30pm</option>
+            <option value="14:00">2:00pm</option>
+            <option value="14:30">2:30pm</option>
+            <option value="15:00">3:00pm</option>
+            <option value="15:30">3:30pm</option>
+            <option value="16:00">4:00pm</option>
+            <option value="16:30">4:30pm</option>
+            <option value="17:00">5:00pm</option>
+            <option value="17:30">5:30pm</option>
+            <option value="18:00">6:00pm</option>
+            <option value="18:30">6:30pm</option>
+        </select><br><br>
+        <label for="dia2Horarios">Día 2:</label>
+        <select id="dia2Horarios" name="dia2Horarios" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+        </select>
+        <label for="hora2Horarios">Hora 2:</label>
+        <select id="hora2Horarios" name="hora2Horarios">
+            <option value="11:00">11:00am</option>
+            <option value="11:30">11:30am</option>
+            <option value="12:00">12:00pm</option>
+            <option value="12:30">12:30pm</option>
+            <option value="13:00">1:00pm</option>
+            <option value="13:30">1:30pm</option>
+            <option value="14:00">2:00pm</option>
+            <option value="14:30">2:30pm</option>
+            <option value="15:00">3:00pm</option>
+            <option value="15:30">3:30pm</option>
+            <option value="16:00">4:00pm</option>
+            <option value="16:30">4:30pm</option>
+            <option value="17:00">5:00pm</option>
+            <option value="17:30">5:30pm</option>
+            <option value="18:00">6:00pm</option>
+            <option value="18:30">6:30pm</option>
+        </select><br><br>
+        <button type="submit">Generar Texto</button>
+        <button type="button" id="btnCopiarHorarios">
+            <i class="fa-solid fa-copy"></i> Copiar
+        </button>
+        <button type="reset" id="btnResetHorarios">
+            <i class="fa-solid fa-delete-left"></i> Limpiar
+        </button><br><br>
+    </form>
+
+    <div id="resultadoHorarios"></div>
+</div>
+
+
+
+
+<!-- AGENDA REUNIONES -->
+
+<div id="agenda" class="tabcontent"><br>
+
+
+<h1>Agenda de Reuniones</h1>
+<form id="meetingForm">
+    <label for="meetingType">Tipo de reunión:</label>
+    <select id="meetingType" name="meetingType">
+        <option value="">Seleccione...</option>
+        <option value="sesionInformativa">Sesión informativa</option>
+        <option value="entregaResultados">Entrega de resultados</option>
+        <option value="examenDiagnostico">Examen diagnóstico</option>
+        <option value="reunionesDeAvance">Reunión de avance</option>
+
+
+    </select>
+</form>
+
+<h2>Disponibilidad:</h2>
+<table id="availabilityTable">
+    <thead>
+        <tr>
+            <th>Hora</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+            <th>Sábado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="7">Seleccione un tipo de reunión para ver la disponibilidad.</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+
+
+
+    <script src="script.js"></script>
+    <script src="data.js"></script>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
