@@ -325,6 +325,7 @@ btnCopiarReuniones.addEventListener("click", function() {
 document.addEventListener('DOMContentLoaded', () => {
     const meetingTypeSelect = document.getElementById('meetingType');
     const availabilityTableBody = document.querySelector('#availabilityTable tbody');
+    const availabilityTableTh = document.querySelector('#availabilityTable tr');
 
     meetingTypeSelect.addEventListener('change', function() {
         const type = this.value;
@@ -351,13 +352,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 const timeCell = document.createElement('td');
                 timeCell.textContent = formatTime(timeSlot);
                 row.appendChild(timeCell);
-
-                days.forEach(day => {
+            
+                for (let i = 1; i < availabilityTableTh.children.length; i++) {
                     const cell = document.createElement('td');
-                    cell.textContent = '✅'; 
+                    const day = availabilityTableTh.children[i].textContent.toLowerCase();
+            
+                    if (day === "sábado") {
+                        // Check if the time is one of the allowed times for "Sábado"
+                        if (["11:00", "11:30", "12:00", "12:30", "13:00"].includes(timeSlot)) {
+                            cell.textContent = '✅';
+                        } else {
+                            cell.textContent = 'X';
+                        }
+                    }else if (day === "viernes" && type === "reunionesDeAvance" && timeSlot === "16:00") {
+                            cell.textContent = '✅';
+                    } else if (type === "reunionesDeAvance") {
+                        if(["16:00"].includes(timeSlot)) {
+                            cell.textContent = 'X'
+                        } else {
+                            cell.textContent = '✅';
+                        }
+                    } else if (days.map(d => d.toLowerCase()).includes(day)) {
+                        cell.textContent = '✅';
+                    } else {
+                        cell.textContent = 'X';
+                    }
+            
                     row.appendChild(cell);
-                });
-
+                }
+            
                 availabilityTableBody.appendChild(row);
             });
 
